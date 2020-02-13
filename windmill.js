@@ -82,7 +82,7 @@ function createModel() {
 
 function loadModels() {
   const loader = new THREE.GLTFLoader();
-  loader.load( 'windmill.glb', function( gltf ) {
+  loader.load( 'windmillx.glb', function( gltf ) {
     var mesh = gltf.scene;
     var s = 1;
     mesh.scale.set( s,s,s );
