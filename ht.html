@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>		
+    <title>HT</title>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <script src="./ht/lib/core/ht.js"></script>
+    <script src="./ht/lib/plugin/ht-obj.js"></script>
+    <script src="./ht/lib/plugin/ht-modeling.js"></script>
+    <script src="./ht/lib/plugin/ht-form.js"></script>
+    <link href="ht.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script>
+      function init() {
+        dataModel = new ht.DataModel();                
+        g3d = new ht.graph3d.Graph3dView(dataModel);                  
+
+        view = g3d.getView();  
+        view.className = 'main';
+        document.body.appendChild(view);
+        window.addEventListener('resize', function (e) {
+          g3d.invalidate();
+        }, false);  
+
+        g3d.setEye([0, 500, 1000]);
+        g3d.setHeadlightIntensity(2);
+        g3d.setHeadlightColor('#4B7A8F');
+        g3d.setCenter([0, 500, 900]);
+        g3d.setGridVisible(true); 
+        g3d.setGridColor('#74AADA');
+
+        loadObj('E1', 0, {s3: [5, 5, 5]});
+      }
+      
+      function createLight(){
+        var light = new ht.Light();
+        light.s({
+          'light.type': 'directional',
+          'light.color': '#FFFAF3',
+          'light.intensity': 0.3,
+        });
+        light.p3(30, 30, 30);
+        dataModel.add(light);   
+        return light;
+      }
+      function createLight2(){
+        var light = new ht.Light();
+        light.s({
+          'light.type': 'point',
+          'light.color': '#FFFAF3',
+          'light.intensity': 0.4,
+        });
+        light.p3(30, 100, 30);
+        dataModel.add(light);   
+        return light;
+      }
+      
+      function loadObj(name, x, params){
+        params.prefix = 'obj/';
+        params.center = true;
+        params.cube = true;
+        params.shape3d = name;
+        params.finishFunc = function(modelMap, array, rawS3){
+          var node = new ht.Node();
+          node.s({
+              'shape3d': name,
+              'wf.visible': 'selected',
+              'wf.width': 1,
+              'wf.color': '#F7F691'
+          });
+          node.s3(rawS3);
+          node.p3(x, rawS3[1]/2, 0);
+          dataModel.add(node);                    
+        };
+        ht.Default.loadObj('../windmillx.obj', '../windmillx.mtl', params);
+      }
+      
+      init();
+      createLight();
+      createLight2();
+    </script>
+  </body>
+</html>

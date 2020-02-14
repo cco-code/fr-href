@@ -1,0 +1,22 @@
+html, body {
+  padding: 0px;
+  margin: 0px;
+  overflow: hidden;
+}
+
+.main {
+  background: #426AA1;
+  margin: 0px;
+  padding: 0px;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
+
+.formpane {
+  top: 10px;
+  right: 10px;   
+  background: rgba(230, 230, 230, 0.5);
+}
