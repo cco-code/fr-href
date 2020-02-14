@@ -1,0 +1,21 @@
+{
+  "category": "Power",
+  "product": "Solar energy",
+  "groups": [
+    {
+      "number": 001001,
+      "power": 0.036,
+      "active": true
+    },
+    {
+      "number": 001002,
+      "power": 0.035,
+      "active": true
+    },
+    {
+      "number": 001003,
+      "power": 0.000,
+      "active": false
+    }
+  ]
+}
